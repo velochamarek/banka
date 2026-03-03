@@ -3,7 +3,7 @@ Jednoduchá konzolová aplikace v Javě simulující základní funkce bankovní
 - Přihlášení pomocí PIN
 - Výběr peněz
 - Vklad peněz
-- Odeslání peněz jiné osobě
+- Odeslání peněz na jiný účet
 
 ## Použité jazyky
 - Java
@@ -13,7 +13,7 @@ Jednoduchá konzolová aplikace v Javě simulující základní funkce bankovní
 - Kontrola neplatného vstupu (ošetření pomocí hasNextInt())
 - Kontrola dostatečného zůstatku při výběru a odesílání peněz
 - Možnost vložit peníze na účet
-- Simulace odeslání peněz vybrané osobě
+- Simulace odeslání peněz na jiný účet (OOP)
 - Náhodně generovaný počáteční zůstatek
 - Formátování zůstatku s oddělením tisíců
 
