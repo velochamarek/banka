@@ -1,7 +1,6 @@
 import java.util.Scanner;
-import java.util.Random;
 
-public class banka {
+public class Banka {
     static Scanner sc = new Scanner(System.in);
 
     static int overeniIntPocetPenez(int pocetPenez){         // metoda - ověření vstupu typu integer pro počet peněz
@@ -77,34 +76,35 @@ public class banka {
         return zustatek;
     }
 
-    static int poslatPenize(int zustatek){          // metoda - poslání peněz jiné osobě
+    static int poslatPenize(int zustatek,Ucet Devizovy,Ucet Sporici){          // metoda - poslání peněz jiné osobě
         int pocetPenez = 1;
-        int vyberOsoby = 0;
+        int vyberUctu = 0;
         boolean pokracovat = false;
 
         System.out.println("---------------SEZNAM-------------");
-        System.out.println("1. Petr Novák");
-        System.out.println("2. Pavel Svoboda");
-        System.out.println("3. Jitka Novotná");
+        System.out.println("1. "+Devizovy.name+"           "+String.format("%,d",Devizovy.zustatek)+" Kč");
+        System.out.println("2. "+Sporici.name+"           "+String.format("%,d",Sporici.zustatek)+" Kč");
         System.out.println("---------------------------------");
-            
+
+        String seznamUctu[] = {Devizovy.name,Sporici.name};
+
         while(pocetPenez != 0){
             
             while(pokracovat == false){
-                System.out.print("Zadejte, komu chcete poslat peníze: ");
+                System.out.print("Zadejte, na jaký účet chcete poslat peníze: ");
                 while (true) {
                     if (sc.hasNextInt()){
-                        vyberOsoby = sc.nextInt();
+                        vyberUctu = sc.nextInt();
                         break;
                     } else {
                         System.out.println("Neplatný vstup");
                         sc.next();
                     }
                 }
-                if(vyberOsoby == 1 || vyberOsoby == 2 || vyberOsoby == 3){
+                if(vyberUctu >=1 && vyberUctu <= 3){
                     pokracovat = true;
                 } else {
-                    System.out.println("Neplatná osoba");
+                    System.out.println("Neplatný účet");
                 }
             }
             
@@ -119,39 +119,32 @@ public class banka {
             } else {
                 zadaniPinu();
                 zustatek -= pocetPenez;
-                switch (vyberOsoby) {
-                    case 1:
-                        System.out.println("Poslal/a jste "+pocetPenez+" Kč Petru Novákovi");
-                        break;
-                    case 2:
-                        System.out.println("Poslal/a jste "+pocetPenez+" Kč Pavlu Svobodovi");
-                        break;
-                    case 3:
-                        System.out.println("Poslal/a jste "+pocetPenez+" Kč Jitce Novotné");
-                        break;
-                }
+                System.out.println("Poslal jste si "+pocetPenez+" Kč na "+seznamUctu[vyberUctu-1]+".");
             }
         }
         return zustatek;
     }
 
     public static void main(String[] args) {            // hlavní program
-        Random r = new Random();
         
         System.out.println("-------------PŘIHLÁŠENÍ-------------");
         
         zadaniPinu();
         
         System.out.println("             VÍTEJTE             ");
-        
-        int min = 5000, max = 5000000;
-        int zustatek = r.nextInt((max-min)+min);
+
+        Ucet Bezny = new Ucet();
+        Bezny.name = "Běžný účet";
+        Ucet Devizovy = new Ucet();
+        Devizovy.name = "Devizový účet";
+        Ucet Sporici = new Ucet();
+        Sporici.name = "Spořicí účet";
         
         int volba = 0;
 
         while(volba!=4){
             System.out.println("---------DOMOVSKÁ STRÁNKA---------");
-            System.out.println("Váš zůstatek: "+String.format("%,d",zustatek)+" Kč");
+            System.out.println("Váš zůstatek (Běžný účet): "+String.format("%,d",Bezny.zustatek)+" Kč");
             System.out.println("Vyberte si akci:");
             System.out.println("1. Výběr peněz");
             System.out.println("2. Vložit peníze");
@@ -172,13 +165,13 @@ public class banka {
 
             switch (volba) {
                 case 1:
-                    zustatek = vyberPenez(zustatek);
+                    Bezny.zustatek = vyberPenez(Bezny.zustatek);
                     break;
                 case 2:
-                    zustatek = vkladPenez(zustatek);
+                    Bezny.zustatek = vkladPenez(Bezny.zustatek);
                     break;
                 case 3:
-                    zustatek = poslatPenize(zustatek);
+                    Bezny.zustatek = poslatPenize(Bezny.zustatek,Devizovy,Sporici);
                     break;
                 case 4:
                     break;
