@@ -86,7 +86,7 @@ public class Banka {
         System.out.println("2. "+Sporici.name+"           "+String.format("%,d",Sporici.zustatek)+" Kč");
         System.out.println("---------------------------------");
 
-        Ucet seznamUctu[] = {Devizovy,Sporici};
+        String seznamUctu[] = {Devizovy.name,Sporici.name};
 
         while(pocetPenez != 0){
             
@@ -97,7 +97,7 @@ public class Banka {
                         vyberUctu = sc.nextInt();
                         break;
                     } else {
-                        System.out.println("Neplatný vstup");
+                        System.out.println("Neplatný vstup");b
                         sc.next();
                     }
                 }
@@ -119,8 +119,7 @@ public class Banka {
             } else {
                 zadaniPinu();
                 zustatek -= pocetPenez;
-                seznamUctu[vyberUctu-1].zustatek += pocetPenez;
-                System.out.println("Poslal jste si "+pocetPenez+" Kč na "+seznamUctu[vyberUctu-1].name+".");
+                System.out.println("Poslal jste si "+pocetPenez+" Kč na "+seznamUctu[vyberUctu-1]+".");
             }
         }
         return zustatek;
