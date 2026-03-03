@@ -4,7 +4,7 @@ import java.util.Random;
 public class banka {
     static Scanner sc = new Scanner(System.in);
 
-    static int overeniIntPocetPenez(int pocetPenez){         // metoda pro ověření vstupu typu integer pro počet peněz
+    static int overeniIntPocetPenez(int pocetPenez){         // metoda - ověření vstupu typu integer pro počet peněz
         while (true) {
             if (sc.hasNextInt()){
                 pocetPenez = sc.nextInt();
@@ -17,7 +17,7 @@ public class banka {
         return pocetPenez;
     }
 
-    static void zadaniPinu(){           // metoda pro ověření PIN kódem
+    static void zadaniPinu(){           // metoda - ověření PIN kódem
         int pin = 1234;
         int pinInput = 0;
         while(pinInput!=pin){
@@ -39,7 +39,7 @@ public class banka {
         }
     }
 
-    static int vyberPenez(int zustatek){            // metoda pro vybrání peněz
+    static int vyberPenez(int zustatek){            // metoda - vybrání peněz
         int pocetPenez = 1;
         while(pocetPenez != 0){
             System.out.print("Zadejte, kolik peněz chcete vybrat (pro návrat do hlavní nabídky zadejte 0): ");
@@ -59,7 +59,7 @@ public class banka {
         return zustatek;
     }
 
-    static int vkladPenez(int zustatek){            // metoda pro vklad peněz
+    static int vkladPenez(int zustatek){            // metoda - vklad peněz
         int pocetPenez = 1;
         while(pocetPenez != 0){
             System.out.print("Zadejte, kolik peněz chcete vložit (pro návrat do hlavní nabídky zadejte 0): ");
@@ -77,7 +77,7 @@ public class banka {
         return zustatek;
     }
 
-    static int poslatPenize(int zustatek){          // metoda pro poslání peněz jiné osobě
+    static int poslatPenize(int zustatek){          // metoda - poslání peněz jiné osobě
         int pocetPenez = 1;
         int vyberOsoby = 0;
         boolean pokracovat = false;
