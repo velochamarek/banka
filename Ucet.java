@@ -4,7 +4,7 @@ public class Ucet {
     String name;
     
     Random r = new Random();
-    int min = 5000, max = 5000000;
+    private int min = 5000, max = 5000000;
     private int zustatek = r.nextInt((max-min)+min);
 
     public void setZustatek(int novaHodnota){

@@ -3,6 +3,24 @@ import java.util.Scanner;
 public class Banka {
     static Scanner sc = new Scanner(System.in);
 
+    static int vytvoreniPinu(int pin){
+        System.out.println("Vytvořte si 4-místný PIN");
+        while (true) {
+            if (sc.hasNextInt()){
+                pin = sc.nextInt();
+                if(String.valueOf(Math.abs(pin)).length()==4){
+                    break;
+                } else {
+                    System.out.println("Neplatná délka PINu");
+                }
+            } else {
+                System.out.println("Neplatný vstup");
+                sc.next();
+            }
+        }
+        return pin;
+    }
+
     static int overeniIntPocetPenez(int pocetPenez){         // metoda - ověření vstupu typu integer pro počet peněz
         while (true) {
             if (sc.hasNextInt()){
@@ -16,8 +34,7 @@ public class Banka {
         return pocetPenez;
     }
 
-    static void zadaniPinu(){           // metoda - ověření PIN kódem
-        int pin = 1234;
+    static void zadaniPinu(int pin){           // metoda - ověření PIN kódem
         int pinInput = 0;
         while(pinInput!=pin){
             System.out.print("Zadejte PIN: ");
@@ -38,7 +55,7 @@ public class Banka {
         }
     }
 
-    static int vyberPenez(int zustatek){            // metoda - vybrání peněz
+    static int vyberPenez(int zustatek, int pin){            // metoda - vybrání peněz
         int pocetPenez = 1;
         while(pocetPenez != 0){
             System.out.print("Zadejte, kolik peněz chcete vybrat (pro návrat do hlavní nabídky zadejte 0): ");
@@ -50,7 +67,7 @@ public class Banka {
             } else if (pocetPenez == 0) {
                 break;
             } else {
-                zadaniPinu();
+                zadaniPinu(pin);
                 zustatek -= pocetPenez;
                 System.out.println("Vybral/a jste "+pocetPenez+" Kč.");
             }
@@ -58,7 +75,7 @@ public class Banka {
         return zustatek;
     }
 
-    static int vkladPenez(int zustatek){            // metoda - vklad peněz
+    static int vkladPenez(int zustatek, int pin){            // metoda - vklad peněz
         int pocetPenez = 1;
         while(pocetPenez != 0){
             System.out.print("Zadejte, kolik peněz chcete vložit (pro návrat do hlavní nabídky zadejte 0): ");
@@ -68,7 +85,7 @@ public class Banka {
             } else if (pocetPenez == 0) {
                 break;
             }  else {
-                zadaniPinu();
+                zadaniPinu(pin);
                 zustatek += pocetPenez;
                 System.out.println("Vložil/a jste "+pocetPenez+" Kč.");
             }
@@ -76,7 +93,7 @@ public class Banka {
         return zustatek;
     }
 
-    static int poslatPenize(int zustatek,Ucet Devizovy,Ucet Sporici){          // metoda - poslání peněz jiné osobě
+    static int poslatPenize(int zustatek,Ucet Devizovy,Ucet Sporici,int pin){          // metoda - poslání peněz jiné osobě
         int pocetPenez = 1;
         int vyberUctu = 0;
         boolean pokracovat = false;
@@ -101,7 +118,7 @@ public class Banka {
                         sc.next();
                     }
                 }
-                if(vyberUctu >=1 && vyberUctu <= 3){
+                if(vyberUctu >=1 && vyberUctu <= 2){
                     pokracovat = true;
                 } else {
                     System.out.println("Neplatný účet");
@@ -117,7 +134,7 @@ public class Banka {
             } else if (pocetPenez == 0) {
                 break;
             } else {
-                zadaniPinu();
+                zadaniPinu(pin);
                 zustatek -= pocetPenez;
                 seznamUctu[vyberUctu-1].setZustatek(seznamUctu[vyberUctu-1].getZustatek() + pocetPenez);
                 System.out.println("Poslal jste si "+pocetPenez+" Kč na "+seznamUctu[vyberUctu-1].name+".");
@@ -130,7 +147,9 @@ public class Banka {
         
         System.out.println("-------------PŘIHLÁŠENÍ-------------");
         
-        zadaniPinu();
+        int pin = vytvoreniPinu(0);
+
+        zadaniPinu(pin);
         
         System.out.println("             VÍTEJTE             ");
 
@@ -166,13 +185,13 @@ public class Banka {
 
             switch (volba) {
                 case 1:
-                    Bezny.setZustatek(vyberPenez(Bezny.getZustatek()));
+                    Bezny.setZustatek(vyberPenez(Bezny.getZustatek(),pin));
                     break;
                 case 2:
-                    Bezny.setZustatek(vkladPenez(Bezny.getZustatek()));
+                    Bezny.setZustatek(vkladPenez(Bezny.getZustatek(),pin));
                     break;
                 case 3:
-                    Bezny.setZustatek(poslatPenize(Bezny.getZustatek(),Devizovy,Sporici));
+                    Bezny.setZustatek(poslatPenize(Bezny.getZustatek(),Devizovy,Sporici,pin));
                     break;
                 case 4:
                     break;
