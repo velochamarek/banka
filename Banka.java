@@ -82,8 +82,8 @@ public class Banka {
         boolean pokracovat = false;
 
         System.out.println("---------------SEZNAM-------------");
-        System.out.println("1. "+Devizovy.name+"           "+String.format("%,d",Devizovy.zustatek)+" Kč");
-        System.out.println("2. "+Sporici.name+"           "+String.format("%,d",Sporici.zustatek)+" Kč");
+        System.out.println("1. "+Devizovy.name+"           "+String.format("%,d",Devizovy.getZustatek())+" Kč");
+        System.out.println("2. "+Sporici.name+"           "+String.format("%,d",Sporici.getZustatek())+" Kč");
         System.out.println("---------------------------------");
 
         Ucet seznamUctu[] = {Devizovy,Sporici};
@@ -119,7 +119,7 @@ public class Banka {
             } else {
                 zadaniPinu();
                 zustatek -= pocetPenez;
-                seznamUctu[vyberUctu-1].zustatek += pocetPenez;
+                seznamUctu[vyberUctu-1].setZustatek(seznamUctu[vyberUctu-1].getZustatek() + pocetPenez);
                 System.out.println("Poslal jste si "+pocetPenez+" Kč na "+seznamUctu[vyberUctu-1].name+".");
             }
         }
@@ -145,7 +145,7 @@ public class Banka {
 
         while(volba!=4){
             System.out.println("---------DOMOVSKÁ STRÁNKA---------");
-            System.out.println("Váš zůstatek (Běžný účet): "+String.format("%,d",Bezny.zustatek)+" Kč");
+            System.out.println("Váš zůstatek (Běžný účet): "+String.format("%,d",Bezny.getZustatek())+" Kč");
             System.out.println("Vyberte si akci:");
             System.out.println("1. Výběr peněz");
             System.out.println("2. Vložit peníze");
@@ -166,13 +166,13 @@ public class Banka {
 
             switch (volba) {
                 case 1:
-                    Bezny.zustatek = vyberPenez(Bezny.zustatek);
+                    Bezny.setZustatek(vyberPenez(Bezny.getZustatek()));
                     break;
                 case 2:
-                    Bezny.zustatek = vkladPenez(Bezny.zustatek);
+                    Bezny.setZustatek(vkladPenez(Bezny.getZustatek()));
                     break;
                 case 3:
-                    Bezny.zustatek = poslatPenize(Bezny.zustatek,Devizovy,Sporici);
+                    Bezny.setZustatek(poslatPenize(Bezny.getZustatek(),Devizovy,Sporici));
                     break;
                 case 4:
                     break;

@@ -5,5 +5,18 @@ public class Ucet {
     
     Random r = new Random();
     int min = 5000, max = 5000000;
-    int zustatek = r.nextInt((max-min)+min);
+    private int zustatek = r.nextInt((max-min)+min);
+
+    public void setZustatek(int novaHodnota){
+        if(novaHodnota >= 0){
+            this.zustatek = novaHodnota;
+        } else {
+            System.out.println("Neplatná hodnota");
+        }
+
+    }
+
+    public int getZustatek(){
+        return zustatek;
+    }
 }
