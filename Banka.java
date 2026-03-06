@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Banka {
     static Scanner sc = new Scanner(System.in);
 
-    static int vytvoreniPinu(int pin){
+    static int vytvoreniPinu(int pin){          // metoda - vytvoření Pinu (použito jednou na začátku programu)
         System.out.println("Vytvořte si 4-místný PIN");
         while (true) {
             if (sc.hasNextInt()){
@@ -101,7 +101,7 @@ public class Banka {
         System.out.println("---------------SEZNAM-------------");
         System.out.println("1. "+Devizovy.name+"           "+String.format("%,d",Devizovy.getZustatek())+" Kč");
         System.out.println("2. "+Sporici.name+"           "+String.format("%,d",Sporici.getZustatek())+" Kč");
-        System.out.println("3. "+Investicni.name+"           "+String.format("%,d",Investicni.getZustatek()+" Kč"));
+        System.out.println("3. "+Investicni.name+"           "+String.format("%,d",Investicni.getZustatek())+" Kč");
         System.out.println("---------------------------------");
 
         Ucet seznamUctu[] = {Devizovy,Sporici,Investicni};
@@ -154,14 +154,10 @@ public class Banka {
         
         System.out.println("             VÍTEJTE             ");
 
-        Ucet Bezny = new Ucet();
-        Bezny.name = "Běžný účet";
-        Ucet Devizovy = new Ucet();
-        Devizovy.name = "Devizový účet";
-        Ucet Sporici = new Ucet();
-        Sporici.name = "Spořicí účet";
-        Ucet Investicni = new Ucet();
-        Investicni.name = "Investiční účet";
+        Ucet Bezny = new Ucet("Běžný účet");
+        Ucet Devizovy = new Ucet("Devizový účet");
+        Ucet Sporici = new Ucet("Spořicí účet");
+        Ucet Investicni = new Ucet("Investiční účet");
         
         int volba = 0;
 

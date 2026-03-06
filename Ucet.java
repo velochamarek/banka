@@ -1,7 +1,12 @@
 import java.util.Random;
 
 public class Ucet {
+    
     String name;
+    public Ucet(String ucetName){
+        name = ucetName;
+    }
+    
     
     Random r = new Random();
     private int min = 5000, max = 5000000;
