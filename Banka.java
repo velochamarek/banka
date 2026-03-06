@@ -93,7 +93,7 @@ public class Banka {
         return zustatek;
     }
 
-    static int poslatPenize(int zustatek,Ucet Devizovy,Ucet Sporici,int pin){          // metoda - poslání peněz jiné osobě
+    static int poslatPenize(int zustatek,Ucet Devizovy,Ucet Sporici,Ucet Investicni,int pin){          // metoda - poslání peněz jiné osobě
         int pocetPenez = 1;
         int vyberUctu = 0;
         boolean pokracovat = false;
@@ -101,9 +101,10 @@ public class Banka {
         System.out.println("---------------SEZNAM-------------");
         System.out.println("1. "+Devizovy.name+"           "+String.format("%,d",Devizovy.getZustatek())+" Kč");
         System.out.println("2. "+Sporici.name+"           "+String.format("%,d",Sporici.getZustatek())+" Kč");
+        System.out.println("3. "+Investicni.name+"           "+String.format("%,d",Investicni.getZustatek()+" Kč"));
         System.out.println("---------------------------------");
 
-        Ucet seznamUctu[] = {Devizovy,Sporici};
+        Ucet seznamUctu[] = {Devizovy,Sporici,Investicni};
 
         while(pocetPenez != 0){
             
@@ -118,7 +119,7 @@ public class Banka {
                         sc.next();
                     }
                 }
-                if(vyberUctu >=1 && vyberUctu <= 2){
+                if(vyberUctu >=1 && vyberUctu <= 3){
                     pokracovat = true;
                 } else {
                     System.out.println("Neplatný účet");
@@ -159,6 +160,8 @@ public class Banka {
         Devizovy.name = "Devizový účet";
         Ucet Sporici = new Ucet();
         Sporici.name = "Spořicí účet";
+        Ucet Investicni = new Ucet();
+        Investicni.name = "Investiční účet";
         
         int volba = 0;
 
@@ -191,7 +194,7 @@ public class Banka {
                     Bezny.setZustatek(vkladPenez(Bezny.getZustatek(),pin));
                     break;
                 case 3:
-                    Bezny.setZustatek(poslatPenize(Bezny.getZustatek(),Devizovy,Sporici,pin));
+                    Bezny.setZustatek(poslatPenize(Bezny.getZustatek(),Devizovy,Sporici,Investicni,pin));
                     break;
                 case 4:
                     break;
