@@ -96,15 +96,7 @@ public class Banka {
             
             while(pokracovat == false){
                 System.out.print("Zadejte, na jaký účet chcete poslat peníze: ");
-                while (true) {
-                    if (sc.hasNextInt()){
-                        vyberUctu = sc.nextInt();
-                        break;
-                    } else {
-                        System.out.println("Neplatný vstup");
-                        sc.next();
-                    }
-                }
+                vyberUctu = overeniInt();
                 if(vyberUctu >=1 && vyberUctu <= 3){
                     pokracovat = true;
                 } else {
@@ -158,15 +150,7 @@ public class Banka {
             System.out.println("---------------------------------");
             System.out.print("Vaše volba: ");
 
-            while (true) {
-                if (sc.hasNextInt()){
-                    volba = sc.nextInt();
-                    break;
-                } else {
-                    System.out.println("Neplatný vstup");
-                    sc.next();
-                }
-            }
+            volba = overeniInt();
 
             switch (volba) {
                 case 1:
