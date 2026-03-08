@@ -4,62 +4,48 @@ public class Banka {
     static Scanner sc = new Scanner(System.in);
 
     static int vytvoreniPinu(int pin){          // metoda - vytvoření Pinu (použito jednou na začátku programu)
-        System.out.println("Vytvořte si 4-místný PIN");
+        System.out.print("Vytvořte si 4-místný PIN: ");
         while (true) {
-            if (sc.hasNextInt()){
-                pin = sc.nextInt();
-                if(String.valueOf(Math.abs(pin)).length()==4){
-                    break;
-                } else {
-                    System.out.println("Neplatná délka PINu");
-                }
+            pin = overeniInt();
+            if(String.valueOf(Math.abs(pin)).length()==4){
+                break;
             } else {
-                System.out.println("Neplatný vstup");
-                sc.next();
+                System.out.println("Neplatná délka PINu");
             }
         }
         return pin;
     }
 
-    static int overeniIntPocetPenez(int pocetPenez){         // metoda - ověření vstupu typu integer pro počet peněz
+    static int overeniInt(){         // metoda - ověření vstupu typu integer
         while (true) {
             if (sc.hasNextInt()){
-                pocetPenez = sc.nextInt();
-                break;
+                return sc.nextInt();
             } else {
                 System.out.println("Neplatný vstup");
                 sc.next();
             }
         }
-        return pocetPenez;
     }
 
     static void zadaniPinu(int pin){           // metoda - ověření PIN kódem
         int pinInput = 0;
         while(pinInput!=pin){
-            System.out.print("Zadejte PIN: ");
-            while (true) {
-                if (sc.hasNextInt()){
-                    pinInput = sc.nextInt();
-                    break;
+                System.out.print("Zadejte PIN: ");
+                pinInput = overeniInt();
+                if(pinInput!=pin){
+                    System.out.println("NESPRÁVNÝ PIN");
                 } else {
-                    System.out.println("Neplatný vstup");
-                    sc.next();
+                    break;
                 }
-            }
-            if(pinInput!=pin){
-                 System.out.println("NESPRÁVNÝ PIN");
-            } else {
-                break;
-            }
         }
     }
+    
 
     static int vyberPenez(int zustatek, int pin){            // metoda - vybrání peněz
         int pocetPenez = 1;
         while(pocetPenez != 0){
             System.out.print("Zadejte, kolik peněz chcete vybrat (pro návrat do hlavní nabídky zadejte 0): ");
-            pocetPenez = overeniIntPocetPenez(pocetPenez);
+            pocetPenez = overeniInt();
             if (pocetPenez > zustatek){
                 System.out.println("Nedostatečný zůstatek");
             } else if (pocetPenez<0) {
@@ -79,7 +65,7 @@ public class Banka {
         int pocetPenez = 1;
         while(pocetPenez != 0){
             System.out.print("Zadejte, kolik peněz chcete vložit (pro návrat do hlavní nabídky zadejte 0): ");
-            pocetPenez = overeniIntPocetPenez(pocetPenez);
+            pocetPenez = overeniInt();
             if (pocetPenez<0) {
                 System.out.println("Neplatná částka");
             } else if (pocetPenez == 0) {
@@ -127,7 +113,7 @@ public class Banka {
             }
             
             System.out.print("Zadejte, kolik peněz chcete poslat (pro návrat do hlavní nabídky zadejte 0): ");
-            pocetPenez = overeniIntPocetPenez(pocetPenez);
+            pocetPenez = overeniInt();
             if(pocetPenez > zustatek){
                 System.out.println("Nedostatečný zůstatek");
             } else if (pocetPenez<0) {
