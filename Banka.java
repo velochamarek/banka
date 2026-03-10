@@ -29,15 +29,23 @@ public class Banka {
 
     static void zadaniPinu(int pin){           // metoda - ověření PIN kódem
         int pinInput = 0;
-        while(pinInput!=pin){
+            for (int i = 0; i < 3; i++){
                 System.out.print("Zadejte PIN: ");
                 pinInput = overeniInt();
                 if(pinInput!=pin){
                     System.out.println("NESPRÁVNÝ PIN");
+                    if (i == 2){
+                        zablokovaniPristupu();
+                    }
                 } else {
                     break;
                 }
-        }
+            }
+    }
+
+    static void zablokovaniPristupu(){
+        System.out.println("PŘÍSTUP ZABLOKOVÁN");
+        System.exit(0);
     }
     
 
@@ -128,7 +136,7 @@ public class Banka {
         
         int pin = vytvoreniPinu(0);
 
-        zadaniPinu(pin);
+        zadaniPinu(pin); 
         
         System.out.println("             VÍTEJTE             ");
 
