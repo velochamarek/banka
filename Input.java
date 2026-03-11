@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class Input {
     static Scanner sc = new Scanner(System.in);
 
-    static int vytvoreniPinu(int pin){          // metoda - vytvoření Pinu (použito jednou na začátku programu)
+    static int vytvoreniPinu(){          // metoda - vytvoření Pinu (použito jednou na začátku programu)
+        int pin;
         System.out.print("Vytvořte si 4-místný PIN: ");
         while (true) {
             pin = overeniInt();
